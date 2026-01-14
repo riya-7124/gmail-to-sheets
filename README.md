@@ -6,29 +6,7 @@
 This project automates the process of reading incoming emails from a Gmail account and logging them into a Google Sheet. It uses OAuth 2.0 for secure authentication and ensures that no email is processed twice.
 
 ## High-Level Architecture
-
-
-+-------------+      (1) Auth &       +----------------+
-|   Gmail     | <--- Fetch Unread --- |                |
-|    API      |      Messages         |  Python Script |
-+-------------+                       |  (src/main.py) |
-       |                              +----------------+
-       | (2) JSON Response                    |
-       v                                      | (3) Check State (Duplicates)
-+-------------+                               v
-| Email       |                       +----------------+
-| Parser      | --------------------> |   state.json   |
-+-------------+                       +----------------+
-       |                                      |
-       | (4) Clean Data                       | (5) Append Row
-       v                                      v
-+-------------+                       +----------------+
-|   Google    | --- Write Data -----> |     Google     |
-| Sheets API  |                       |     Sheets     |
-+-------------+                       +----------------+
-
-## High-Level Architecture
-
+![Architecture Diagram](proof/architecture.png)
 +-----------+           (1) Auth &           +-----------------+
 |   Gmail   | <--- Fetch Unread ------------ |  Python Script  |
 |    API    |           Messages             |  (src/main.py)  |
@@ -144,4 +122,5 @@ See the `proof/` directory for:
 -   `inbox_screenshot.png`: Showing unread emails.
 -   `sheets_screenshot.png`: Showing appended data.
 -   `consent_screen.png`: Showing OAuth flow.
+
 -   `gmail-to-sheets demo.mp4`: Short video explaining the project.
