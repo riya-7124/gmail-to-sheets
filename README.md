@@ -7,27 +7,6 @@ This project automates the process of reading incoming emails from a Gmail accou
 
 ## High-Level Architecture
 ![Architecture Diagram](proof/architecture.png)
-+-----------+           (1) Auth &           +-----------------+
-|   Gmail   | <--- Fetch Unread ------------ |  Python Script  |
-|    API    |           Messages             |  (src/main.py)  |
-+-----------+                                +-----------------+
-      |                                            |
-      | (2) JSON Response                          |
-      v                                            | (3) Check State 
-+-----------+                                      v    (Duplicates)
-|   Email   |                                 +------------+
-|  Parser   | ------------------------------> | state.json |
-+-----------+                                 +------------+
-      |                                            |
-      | (4) Clean Data                             |  (5) Append Row
-      v                                            v
-+------------+                               +-----------------+
-|   Google   | ----(6) Write Data ---------> |  Google Sheet   |
-| Sheets API |                               +-----------------+
-+------------+                                     |
-                                                   |
-                  (7) Finalize:                    |
-           Mark as Read & Update state.json <------+
 
 ## Project Structure
 
@@ -124,3 +103,4 @@ See the `proof/` directory for:
 -   `consent_screen.png`: Showing OAuth flow.
 
 -   `gmail-to-sheets demo.mp4`: Short video explaining the project.
+
